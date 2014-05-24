@@ -41,6 +41,7 @@ textarea {
 </script>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script type="text/javascript" src="lib/marked/lib/marked.js"></script>
+<script type="text/javascript" src="lib/mj.js"></script>
 
 <script>
 marked.setOptions({
@@ -114,7 +115,7 @@ var Preview = {
     if (this.mjRunning) return;
     var text = document.getElementById("marked-mathjax-input").value;
     if (text === this.oldtext) return;
-    text = this.Escape(text);                       //Escape tags before doing stuff
+    text=mj.process(text);
     this.buffer.innerHTML = this.oldtext = text;
     this.mjRunning = true;
     MathJax.Hub.Queue(
@@ -132,7 +133,6 @@ var Preview = {
   PreviewDone: function () {
     this.mjRunning = false;
     text = this.buffer.innerHTML;
-    this.buffer.innerHTML = marked (text);
     this.SwapBuffers();
   },
 
