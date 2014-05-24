@@ -98,7 +98,8 @@ var Preview = {
   //    a pause in the typing).
   //  The callback function is set up below, after the Preview object is set up.
   //
-  Update: function () {
+  Update: function (a) {
+	if(a==1) this.oldtext=null; //Force to reprocess
     if (this.timeout) {clearTimeout(this.timeout)}
     this.timeout = setTimeout(this.callback,this.delay);
   },
@@ -114,9 +115,11 @@ var Preview = {
     Preview.timeout = null;
     if (this.mjRunning) return;
     var text = document.getElementById("marked-mathjax-input").value;
+	var delimit = document.querySelector('input[name="delimit"]:checked').value;
     if (text === this.oldtext) return;
-    text=mj.process(text);
-    this.buffer.innerHTML = this.oldtext = text;
+	this.oldtext = text;
+    text=mj.process(text,delimit);
+    this.buffer.innerHTML = text;
     this.mjRunning = true;
     MathJax.Hub.Queue(
       ["Typeset",MathJax.Hub,this.buffer],
@@ -162,6 +165,21 @@ Preview.callback.autoReset = true;  // make sure it can run more than once</scri
 </div>
 
 <h4>Type something:</h4>
+<table>
+<tr>
+<td>
+<label>Split Delimit : </label>
+<td>
+<input type="radio" name="delimit" value="0" checked="checked">
+The default <code>\(,\),$$</code> delimiters<br>
+<input type="radio" name="delimit" value="1">
+All <code>\(,\),$,$$</code> delimiters<br>
+<input type="radio" name="delimit" value="2">
+Only <code>\(,\)</code> delimiters<br>
+<input type="radio" name="delimit" value="3">
+Only <code>$,$$</code> delimiters<br>
+<td><input type="button" onclick="Preview.Update(1)" value="Update"></input><br>(Please click here twice)
+</table>
 <textarea id="marked-mathjax-input"
           onkeyup="Preview.Update()"
           name="comment"
