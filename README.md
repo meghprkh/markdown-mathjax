@@ -5,8 +5,14 @@ Live markdown editor based on MathJax and Marked
 
 ## How it works?
 
-text → Escape tags → MathJax → Markdown → preview
+text → Replace Math with placeholder and store Math it in array → Markdown → Replace placeholders with Math → Return marked text → MathJax →Preview
 
+##Differecnces
+The main difference between mine and Kerzol's implementation is the order of Markdown And Latex.
+
+I do Markdown first and then Latex whereas he does the opposite.
+
+My version eliminates some bugs of his version
 
 ## Demo
 
