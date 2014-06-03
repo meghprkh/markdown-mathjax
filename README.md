@@ -10,7 +10,7 @@ text → Escape tags → MathJax → Markdown → preview
 
 ## Demo
 
-http://kerzol.github.io/markdown-mathjax/editor.html
+http://meghprkh.github.io/markdown-mathjax/editor.html
 
 
 
