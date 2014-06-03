@@ -5,7 +5,7 @@ Live markdown editor based on MathJax and Marked
 
 ## How it works?
 
-text → Replace Math with placeholder and store Math it in array → Markdown → Replace placeholders with Math → Return marked text → MathJax →Preview
+text → Replace Math with placeholder and store Math it in array → Markdown → Replace placeholders with Math → Return marked text → MathJax → Preview
 
 ##Differecnces
 The main difference between mine and Kerzol's implementation is the order of Markdown And Latex.
